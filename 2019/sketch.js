@@ -54,12 +54,12 @@ function Ballon() {
   vMultiplier = 0.01;
   ax = rotationY * vMultiplier;
   vx += ax;
-  //px += vx;
-  px = mouseX;
+  px += vx;
+  //px = mouseX;
   ay = rotationX * vMultiplier;
   vy += ay;
-  //py += vy;
-  py = mouseY;
+  py += vy;
+  //py = mouseY;
   fill(200, 100, 0);
   stroke(0);
   strokeWeight(3);
