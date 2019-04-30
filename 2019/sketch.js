@@ -4,7 +4,7 @@ var c, vMultiplier, g, r;
 //***************************************************
 var Second, Timer, Score, fs;
 var bx, by, bs1, bs2, blockbegin, bSpeed;
-var FIN, cirlce;
+var FIN, DEBUT, cirlce;
 //***************************************************
 
 function setup() {
@@ -12,6 +12,7 @@ function setup() {
   rectMode(CENTER);
   noStroke();
   FIN = false;
+  DEBUT = true;
   bSpeed = 5;
   bs1 = windowWidth / 6;
   blockbegin = random(0 + bs1 / 2, windowWidth - bs1 / 2);
@@ -42,20 +43,23 @@ function draw() {
   rect(windowWidth / 2, 0, windowWidth / 4);
   fill(0);
   rect(windowWidth / 2, windowHeight / 2, windowWidth, 5);
-  if (FIN === false) {
-    Regles();
-    Ballon();
-    Block();
-    blockbegin = blockbegin + bSpeed;
-    Text();
-  } else {
-    textFont("arial");
-    textSize(fs * 1.5);
-    textAlign(CENTER);
-    fill(0);
-    text("FIN! votre pointage: " + Score, windowWidth / 2, windowHeight / 2);
+  DEBUT = false;
+  if (DEBUT === false) {
+    if (FIN === false) {
+      Regles();
+      Ballon();
+      Block();
+      blockbegin = blockbegin + bSpeed;
+      Text();
+    } else {
+      textFont("arial");
+      textSize(fs * 1.5);
+      textAlign(CENTER);
+      fill(0);
+      text("FIN! votre pointage: " + Score, windowWidth / 2, windowHeight / 2);
+    }
+    circle = (px + s1 / 2) || (px - s1 / 2) || (py + s1 / 2) || (py - s1 / 2);
   }
-  circle = (px + s1 / 2) || (px - s1 / 2) || (py + s1 / 2) || (py - s1 / 2);
 }
 //***************************************************
 function Ballon() {
@@ -139,6 +143,7 @@ function Regles() {
     }
   }
 }
+
 //***************************************************
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
