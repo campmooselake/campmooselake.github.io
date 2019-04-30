@@ -43,10 +43,10 @@ function draw() {
     Text();
   } else {
     textFont("arial");
-    textSize(fs);
+    textSize(fs * 1.5);
     textAlign(CENTER);
     fill(0);
-    text("FIN votre pointage: " + Score, windowWidth / 2, windowHeight / 2);
+    text("FIN! votre pointage: " + Score, windowWidth / 2, windowHeight / 2);
   }
 }
 //***************************************************
