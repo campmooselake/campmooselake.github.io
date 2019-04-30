@@ -4,7 +4,7 @@ var c, vMultiplier, g, r;
 //***************************************************
 var Second, Timer, Score, fs;
 var bx, by, bs1, bs2, blockbegin, bSpeed;
-var FIN;
+var FIN, cirlce;
 //***************************************************
 
 function setup() {
@@ -55,6 +55,7 @@ function draw() {
     fill(0);
     text("FIN! votre pointage: " + Score, windowWidth / 2, windowHeight / 2);
   }
+  circle = (px + s1 / 2) || (px - s1 / 2) || (py + s1 / 2) || (py - s1 / 2);
 }
 //***************************************************
 function Ballon() {
@@ -128,7 +129,7 @@ function Regles() {
     Timer--;
     Second = 0;
   }
-  if (px >= bx - bs1 / 2 && px <= bx + bs1 / 2 && py >= windowHeight / 2 - 10 && py <= windowHeight / 2 + 10) {
+  if (px + s1 / 2 >= bx - bs1 / 2 && px - s1 / 2 <= bx + bs1 / 2 && py >= windowHeight / 2 - 10 && py <= windowHeight / 2 + 10) {
     FIN = true;
   } else {
     if ((py >= windowHeight / 2 - 10) && (py <= windowHeight / 2 + 10)) {
