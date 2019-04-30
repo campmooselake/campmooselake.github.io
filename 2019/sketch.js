@@ -33,6 +33,13 @@ function setup() {
 //***************************************************
 function draw() {
   background(234, 178, 108);
+  fill(234, 178, 120);
+  strokeWeight(5);
+  ellipse(windowWidth / 2, windowHeight, windowWidth / 1.5);
+  ellipse(windowWidth / 2, 0, windowWidth / 1.5);
+  fill(234, 0, 0);
+  strokeWeight(5);
+  rect(windowWidth / 2, 0, windowWidth / 4);
   fill(0);
   rect(windowWidth / 2, windowHeight / 2, windowWidth, 5);
   if (FIN === false) {
