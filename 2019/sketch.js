@@ -2,15 +2,16 @@
 var s1, ax, ay, vx, vy, px, py;
 var c, vMultiplier, g, r;
 //***************************************************
-var Second, Timer, Score, fs;
+var Second, Timer, Second2, Timer2, Score, fs;
 var bx, by, bs1, bs2, blockbegin, bSpeed;
-var FIN, DEBUT, cirlce;
+var FIN, DEBUT, COUNTDOWN, cirlce;
 //***************************************************
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   rectMode(CENTER);
   noStroke();
+  COUNTDOWN = false;
   FIN = false;
   DEBUT = true;
   bSpeed = 5;
@@ -19,6 +20,8 @@ function setup() {
   fs = 30;
   Second = 0;
   Timer = 10;
+  Second2 = 0;
+  Timer2 = 5;
   Score = 0;
   ax = 0;
   ay = 0;
@@ -43,22 +46,35 @@ function draw() {
   rect(windowWidth / 2, 0, windowWidth / 4);
   fill(0);
   rect(windowWidth / 2, windowHeight / 2, windowWidth, 5);
-  DEBUT = false;
-  if (DEBUT === false) {
-    if (FIN === false) {
-      Regles();
-      Ballon();
-      Block();
-      blockbegin = blockbegin + bSpeed;
-      Text();
-    } else {
-      textFont("arial");
-      textSize(fs * 1.5);
-      textAlign(CENTER);
-      fill(0);
-      text("FIN! votre pointage: " + Score, windowWidth / 2, windowHeight / 2);
+  Regles();
+  Ballon();
+  if (COUNTDOWN === true) {
+    Second2++;
+    if (Second2 >= 60) {
+      Timer2--;
+      Second2 = 0;
+    } else if (Timer2 <= 0) {
+      DEBUT = false;
     }
-    circle = (px + s1 / 2) || (px - s1 / 2) || (py + s1 / 2) || (py - s1 / 2);
+    if (DEBUT === false) {
+      Second++;
+      if (Second >= 60) {
+        Timer--;
+        Second = 0;
+      }
+      if (FIN === false) {
+        Block();
+        blockbegin = blockbegin + bSpeed;
+        Text();
+      } else {
+        textFont("arial");
+        textSize(fs * 1.5);
+        textAlign(CENTER);
+        fill(0);
+        text("FIN! votre pointage: " + Score, windowWidth / 2, windowHeight / 2);
+      }
+      circle = (px + s1 / 2) || (px - s1 / 2) || (py + s1 / 2) || (py - s1 / 2);
+    }
   }
 }
 //***************************************************
@@ -128,22 +144,22 @@ function Text() {
 }
 //***************************************************
 function Regles() {
-  Second++;
-  if (Second >= 60) {
-    Timer--;
-    Second = 0;
-  }
   if (px + s1 / 2 >= bx - bs1 / 2 && px - s1 / 2 <= bx + bs1 / 2 && py >= windowHeight / 2 - 10 && py <= windowHeight / 2 + 10) {
     FIN = true;
   } else {
-    if ((py >= windowHeight / 2 - 10) && (py <= windowHeight / 2 + 10)) {
-      Timer = 10;
-      Second = 0;
-      Score++;
+    if (DEBUT === true) {
+      if ((py >= windowHeight / 2 - 10) && (py <= windowHeight / 2 + 10)) {
+        Timer = 10;
+        Second = 0;
+        Score++;
+      }
     }
   }
 }
 
+function goStart() {
+  COUNTDOWN = false;
+}
 //***************************************************
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
