@@ -21,7 +21,7 @@ function setup() {
   Second = 0;
   Timer = 10;
   Second2 = 0;
-  Timer2 = 5;
+  Timer2 = 3;
   Score = 0;
   ax = 0;
   ay = 0;
@@ -71,7 +71,7 @@ function draw() {
         textSize(fs * 1.5);
         textAlign(CENTER);
         fill(0);
-        text("FIN! votre pointage: " / n + Score, windowWidth / 2, windowHeight / 2);
+        text("FIN! votre pointage: " + Score, windowWidth / 2, windowHeight / 2);
       }
       circle = (px + s1 / 2) || (px - s1 / 2) || (py + s1 / 2) || (py - s1 / 2);
     }
@@ -158,7 +158,7 @@ function Regles() {
 }
 
 function goStart() {
-  COUNTDOWN = false;
+  COUNTDOWN = true;
 }
 //***************************************************
 function windowResized() {
