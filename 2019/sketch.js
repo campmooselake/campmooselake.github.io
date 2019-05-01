@@ -4,14 +4,14 @@ var c, vMultiplier, g, r;
 //***************************************************
 var Second, Timer, Second2, Timer2, TimerText, Score, fs;
 var bx, by, bs1, bs2, blockbegin, bSpeed;
-var FIN, DEBUT, COUNTDOWN, cirlce;
+var FIN, DEBUT, Cooldown, cirlce;
 //***************************************************
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   rectMode(CENTER);
   noStroke();
-  COUNTDOWN = false;
+  Cooldown = 0;
   FIN = false;
   DEBUT = true;
   bSpeed = 5;
@@ -41,9 +41,8 @@ function draw() {
   strokeWeight(5);
   ellipse(windowWidth / 2, windowHeight, windowWidth / 1.5);
   ellipse(windowWidth / 2, 0, windowWidth / 1.5);
-  fill(234, 0, 0);
-  strokeWeight(5);
-  rect(windowWidth / 2, 0, windowWidth / 4);
+  fill(50, 0, 255);
+  ellipse(windowWidth / 2, windowHeight / 2, windowWidth / 4);
   fill(0);
   rect(windowWidth / 2, windowHeight / 2, windowWidth, 5);
   TimerText = Timer2;
@@ -69,6 +68,9 @@ function draw() {
     if (Second >= 60) {
       Timer--;
       Second = 0;
+      Cooldown = 0;
+    } else if (Timer <= 0) {
+      FIN = true;
     }
     if (FIN === false) {
       Block();
@@ -90,17 +92,25 @@ function Ballon() {
   ax = rotationY * vMultiplier;
   vx += ax;
   px += vx;
-  //px = mouseX;
+  px = mouseX;
   ay = rotationX * vMultiplier;
   vy += ay;
   py += vy;
-  //py = mouseY;
+  py = mouseY;
   fill(200, 100, 0);
   stroke(0);
   strokeWeight(3);
   ellipse(px, py, s1, s1);
-  ellipse(px, py, s1 / 1.4, s1);
-  ellipse(px, py, s1 / 4, s1);
+  //  ellipse(px, py, s1 / 1.4, s1);
+  //  ellipse(px, py, s1 / 4, s1);
+  fill(0);
+  rect(px, py, s1, 3)
+  rect(px, py, 3, s1)
+  textFont("calibri");
+  textSize(s1 / 4 * 3);
+  textAlign(CENTER);
+  fill(0);
+  text(") (", px, py + 12);
   //**************Walls*************************
   if (px > windowWidth - r) {
     px = windowWidth - r;
@@ -156,9 +166,12 @@ function Regles() {
   } else {
     if (DEBUT === false) {
       if ((py >= windowHeight / 2 - 10) && (py <= windowHeight / 2 + 10)) {
+        if (Cooldown <= 1) {
+          Score++;
+        }
         Timer = 10;
         Second = 0;
-        Score++;
+        Cooldown++;
       }
     }
   }
