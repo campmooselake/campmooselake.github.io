@@ -17,7 +17,7 @@ function setup() {
   bSpeed = 5;
   bs1 = windowWidth / 6;
   blockbegin = random(0 + bs1 / 2, windowWidth - bs1 / 2);
-  fs = 30;
+  fs = 20;
   Second = 0;
   Timer = 10;
   Second2 = 0;
@@ -71,7 +71,7 @@ function draw() {
         textSize(fs * 1.5);
         textAlign(CENTER);
         fill(0);
-        text("FIN! votre pointage: " + Score, windowWidth / 2, windowHeight / 2);
+        text("FIN! votre pointage: " / n + Score, windowWidth / 2, windowHeight / 2);
       }
       circle = (px + s1 / 2) || (px - s1 / 2) || (py + s1 / 2) || (py - s1 / 2);
     }
