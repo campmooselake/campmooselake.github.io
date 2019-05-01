@@ -166,8 +166,10 @@ function Regles() {
   } else {
     if (DEBUT === false) {
       if ((py >= windowHeight / 2 - 10) && (py <= windowHeight / 2 + 10)) {
-        if (Cooldown <= 1) {
-          Score++;
+        if (FIN === false) {
+          if (Cooldown <= 1) {
+            Score++;
+          }
         }
         Timer = 10;
         Second = 0;
