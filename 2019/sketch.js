@@ -77,11 +77,12 @@ function draw() {
       blockbegin = blockbegin + bSpeed;
       Text();
     } else {
+      strokeWeight(2);
       textFont("arial");
       textSize(fs * 1.5);
       textAlign(CENTER);
       fill(0);
-      text("FIN! pointage: " + Score, windowWidth / 2, windowHeight / 2 - 10);
+      text("FIN! pointage: " + Score, windowWidth / 2, windowHeight / 4.2);
     }
     circle = (px + s1 / 2) || (px - s1 / 2) || (py + s1 / 2) || (py - s1 / 2);
   }
@@ -110,7 +111,7 @@ function Ballon() {
   textSize(s1 / 4 * 3);
   textAlign(CENTER);
   fill(0);
-  text(") (", px, py + 12);
+  text(") (", px, py + 11);
   //**************Walls*************************
   if (px > windowWidth - r) {
     px = windowWidth - r;
@@ -148,16 +149,17 @@ function Block() {
 }
 //***************************************************
 function Text() {
+  strokeWeight(1);
   textFont("arial");
   textSize(fs);
   textAlign(LEFT);
   fill(0);
-  text("Points = " + Score, 50, 50);
+  text("Points = " + Score, windowWidth / 2 - 120, 50);
   textFont("arial");
   textSize(fs);
   textAlign(RIGHT);
   fill(0);
-  text("Temps = " + Timer, windowWidth - 50, 50);
+  text("Temps = " + Timer, windowWidth / 2 + 120, 50);
 }
 //***************************************************
 function Regles() {
